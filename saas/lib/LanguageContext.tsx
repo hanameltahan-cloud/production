@@ -19,28 +19,31 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Initialize with a function to avoid hydration mismatch
-  const [language, setLanguageState] = useState<Language>(() => {
-    // Only access localStorage on client side
-    if (typeof window !== "undefined") {
-      const savedLang = localStorage.getItem("language") as Language | null;
-      if (savedLang && (savedLang === "en" || savedLang === "ar")) {
-        return savedLang;
-      }
-    }
-    return "en";
-  });
-  
-  const [t, setT] = useState<Translations>(() => getTranslation(language));
-  const [dir, setDir] = useState<"ltr" | "rtl">(() => language === "ar" ? "rtl" : "ltr");
+  const [language, setLanguageState] = useState<Language>("en");
+  const [t, setT] = useState<Translations>(getTranslation("en"));
+  const [dir, setDir] = useState<"ltr" | "rtl">("ltr");
+  const [mounted, setMounted] = useState(false);
 
-  // Set document direction on mount and language change
+  // Load language from localStorage after mount (client-side only)
   useEffect(() => {
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = language;
-    setT(getTranslation(language));
-    setDir(language === "ar" ? "rtl" : "ltr");
-  }, [language]);
+    const savedLang = localStorage.getItem("language") as Language | null;
+    if (savedLang && (savedLang === "en" || savedLang === "ar")) {
+      setLanguageState(savedLang);
+      setT(getTranslation(savedLang));
+      setDir(savedLang === "ar" ? "rtl" : "ltr");
+      document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = savedLang;
+    }
+    setMounted(true);
+  }, []);
+
+  // Update document direction when language changes
+  useEffect(() => {
+    if (mounted) {
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = language;
+    }
+  }, [language, mounted]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
