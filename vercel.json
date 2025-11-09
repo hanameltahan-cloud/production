@@ -1,11 +1,11 @@
 {
-	"rootDirectory": "saas",
-	"framework": "nextjs",
-	"buildCommand": "npm run build",
-	"installCommand": "npm install",
-	"outputDirectory": ".next",
-	"ignoreCommand": "git diff --quiet HEAD^ HEAD . || echo 'changes'",
-	"github": {
-		"silent": false
-	}
+  "rootDirectory": "saas",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD . || echo 'changes'",
+  "github": {
+    "silent": false
+  }
 }
