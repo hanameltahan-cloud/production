@@ -2,7 +2,7 @@
   "rootDirectory": "saas",
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install",
+  "installCommand": "npm install --legacy-peer-deps",
   "outputDirectory": ".next",
   "ignoreCommand": "git diff --quiet HEAD^ HEAD . || echo 'changes'",
   "github": {
