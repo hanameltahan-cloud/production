@@ -13,10 +13,10 @@ import { LanguageProvider } from "../lib/LanguageContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ClerkProvider 
+    <ClerkProvider
       {...pageProps}
       appearance={{
-        cssLayerName: 'clerk',
+        cssLayerName: "clerk",
       }}
     >
       <Head>
@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Auth Header */}
         <div className="fixed top-3 left-3 sm:left-4 z-50">
           <SignedOut>
-            <SignInButton 
+            <SignInButton
               mode="modal"
               forceRedirectUrl="/"
               fallbackRedirectUrl="/"
