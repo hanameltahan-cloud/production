@@ -11,6 +11,7 @@ If you don't already have an OpenAI API key, follow these steps:
 1. Visit [platform.openai.com](https://platform.openai.com) and sign up for a new account
 
 2. Add credits to your account:
+
    - Go to [https://platform.openai.com/settings/organization/billing/overview](https://platform.openai.com/settings/organization/billing/overview)
    - Add your $5 minimum payment
    - **Important:** Ensure "Auto Recharge" is NOT enabled
@@ -81,6 +82,7 @@ vercel .
 ```
 
 Once it's deployed:
+
 1. Visit the URL provided
 2. You should see a dynamic, AI-generated welcome message!
 3. Refresh the page to see different variations
@@ -94,6 +96,7 @@ vercel --prod
 ## What's Happening? >
 
 Your app now:
+
 - Connects to OpenAI's API using your secure API key
 - Generates unique, enthusiastic welcome messages for each visitor
 - Returns properly formatted HTML with the AI's response
@@ -102,18 +105,21 @@ Your app now:
 ## Congratulations! <�
 
 You've successfully:
+
 -  Integrated AI into a production application
 -  Secured API credentials using environment variables
 -  Created dynamic, personalized content
 -  Built your first AI-powered web application
 
 ## What You've Learned:
+
 - How to securely manage API keys in production
 - How to integrate OpenAI's API with FastAPI
 - How to use environment variables in Vercel
 - How to create dynamic HTML responses with AI-generated content
 
 ## Next Steps:
+
 - Try modifying the prompt to create different types of content
 - Add query parameters to customize the AI's response
 - Experiment with different OpenAI models
@@ -122,21 +128,26 @@ You've successfully:
 ## Troubleshooting
 
 ### "OpenAI API key not found"
+
 - Make sure you added the environment variable with `vercel env add`
 - Check that the key name is exactly `OPENAI_API_KEY`
 - Redeploy after adding the environment variable
 
 ### "Insufficient credits"
+
 - Check your OpenAI account balance at platform.openai.com
 - Ensure you've added the $5 minimum payment
 
 ### Page loads slowly
+
 - The first request may be slower as the serverless function cold starts
 - Subsequent requests should be faster
 - This is normal behavior for serverless functions
 
 ## Security Note =
+
 Your API key is:
+
 - Never exposed in your code
 - Securely stored in Vercel's environment variables
 - Only accessible to your deployed application
