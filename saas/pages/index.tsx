@@ -47,6 +47,11 @@ export default function Home() {
       const response = await fetch(apiUrl);
 
       if (!response.ok) {
+        if (response.status === 401) {
+          toast.error("Please sign in to generate business ideas");
+          setIsLoading(false);
+          return;
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 

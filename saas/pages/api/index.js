@@ -1,13 +1,22 @@
 import OpenAI from "openai";
+import { getAuth } from "@clerk/nextjs/server";
 
 const DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1";
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 
 export default async function handler(req, res) {
+  // Get authenticated user from Clerk
+  const { userId } = getAuth(req);
+  
   // Get the query parameters
   const { category = "AI Agents", lang = "en" } = req.query;
 
-  console.log("API received:", { category, lang, query: req.query });
+  console.log("API received:", { 
+    category, 
+    lang, 
+    userId,  // Log which user is making the request
+    query: req.query 
+  });
 
   if (!DEEPSEEK_API_KEY) {
     return res.status(500).json({
